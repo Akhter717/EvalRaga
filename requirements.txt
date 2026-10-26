@@ -4,3 +4,4 @@ numpy
 groq
 fastembed
 openpyxl
+pypdf
