@@ -1,0 +1,6 @@
+streamlit
+pandas
+numpy
+groq
+fastembed
+openpyxl
