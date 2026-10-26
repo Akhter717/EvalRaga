@@ -117,3 +117,17 @@ DEMO = pd.DataFrame([
         "ground_truth": "RAG stands for Retrieval-Augmented Generation.",
     },
 ])
+
+
+def extract_pdf_text(file, max_pages=10):
+    """Read the text of the first `max_pages` pages of a PDF (path or uploaded file).
+
+    Works for text PDFs only. A scanned (image) PDF has no text layer and raises ValueError.
+    """
+    from pypdf import PdfReader
+    reader = PdfReader(file)
+    pages = reader.pages[:max_pages]
+    text = "\n".join((p.extract_text() or "") for p in pages).strip()
+    if not text:
+        raise ValueError("No text found in this PDF. It may be a scanned (image) PDF.")
+    return text
